@@ -10,6 +10,7 @@ export const posts = pgTable(
     content: text("content"),
     published: boolean("published").notNull().default(false),
     authorId: uuid("author_id").references(() => Users.id),
+    slug: text("slug"),
   })
 );
 
