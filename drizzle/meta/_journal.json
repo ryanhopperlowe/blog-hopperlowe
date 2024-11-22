@@ -8,6 +8,13 @@
       "when": 1732253125665,
       "tag": "0000_wandering_arclight",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1732255281048,
+      "tag": "0001_next_freak",
+      "breakpoints": true
     }
   ]
 }
