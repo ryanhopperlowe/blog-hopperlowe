@@ -31,33 +31,40 @@ export default function Login() {
   const isLoading = fetcher.state === "submitting";
 
   return (
-    <div className="card bg-base-200">
-      <div className="card-body">
-        <div className="card-header">
-          <h2 className="card-title">Login</h2>
+    <div className="flex justify-center items-center h-full">
+      <div className="card bg-base-200 w-full max-w-xl">
+        <div className="card-body">
+          <div className="card-header">
+            <h2 className="card-title">Login</h2>
+          </div>
+
+          <fetcher.Form
+            method="post"
+            className="card-content flex flex-col gap-4"
+          >
+            <Input
+              name="email"
+              label="Email"
+              type="email"
+              placeholder="Email"
+            />
+
+            <Input
+              name="password"
+              label="Password"
+              type="password"
+              placeholder="Password"
+            />
+
+            {data?.error && (
+              <p className="alert alert-error">{data.error.message}</p>
+            )}
+
+            <Button type="submit" loading={isLoading} disabled={isLoading}>
+              Login
+            </Button>
+          </fetcher.Form>
         </div>
-
-        <fetcher.Form
-          method="post"
-          className="card-content flex flex-col gap-4"
-        >
-          <Input name="email" label="Email" type="email" placeholder="Email" />
-
-          <Input
-            name="password"
-            label="Password"
-            type="password"
-            placeholder="Password"
-          />
-
-          {data?.error && (
-            <p className="alert alert-error">{data.error.message}</p>
-          )}
-
-          <Button type="submit" loading={isLoading} disabled={isLoading}>
-            Login
-          </Button>
-        </fetcher.Form>
       </div>
     </div>
   );

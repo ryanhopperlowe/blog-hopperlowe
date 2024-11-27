@@ -31,7 +31,6 @@ export async function action({ request }: ActionFunctionArgs) {
     }
 
     console.error(error);
-
     throw redirect("/login");
   }
 }
@@ -50,44 +49,48 @@ export default function Login() {
   const validationErrors = fetcher.data?.validationErrors || {};
 
   return (
-    <fetcher.Form method="post" className="card bg-base-200">
-      <div className="card-body">
-        <div className="card-header">
-          <h2 className="card-title">Sign Up</h2>
+    <div className="flex justify-center items-center h-full">
+      <fetcher.Form method="post" className="card bg-base-200 w-full max-w-xl">
+        <div className="card-body">
+          <div className="card-header">
+            <h2 className="card-title">Sign Up</h2>
+          </div>
+
+          <div className="card-content flex flex-col gap-4">
+            <input type="hidden" name="intent" value="signup" />
+
+            <Input
+              name="email"
+              label="Email"
+              type="email"
+              placeholder="Email"
+              error={
+                validationErrors?.email?.[0] || fetcher.data?.conflictError
+              }
+            />
+
+            <Input
+              name="password"
+              label="Password"
+              type="password"
+              placeholder="Password"
+              error={validationErrors?.password?.[0]}
+            />
+
+            <Input
+              name="confirmPassword"
+              label="Confirm Password"
+              type="password"
+              placeholder="Confirm Password"
+              error={validationErrors?.confirmPassword?.[0]}
+            />
+
+            <Button loading={isLoading} disabled={isLoading} type="submit">
+              Sign Up
+            </Button>
+          </div>
         </div>
-
-        <div className="card-content flex flex-col gap-4">
-          <input type="hidden" name="intent" value="signup" />
-
-          <Input
-            name="email"
-            label="Email"
-            type="email"
-            placeholder="Email"
-            error={validationErrors?.email?.[0] || fetcher.data?.conflictError}
-          />
-
-          <Input
-            name="password"
-            label="Password"
-            type="password"
-            placeholder="Password"
-            error={validationErrors?.password?.[0]}
-          />
-
-          <Input
-            name="confirmPassword"
-            label="Confirm Password"
-            type="password"
-            placeholder="Confirm Password"
-            error={validationErrors?.confirmPassword?.[0]}
-          />
-
-          <Button loading={isLoading} disabled={isLoading} type="submit">
-            Sign Up
-          </Button>
-        </div>
-      </div>
-    </fetcher.Form>
+      </fetcher.Form>
+    </div>
   );
 }
