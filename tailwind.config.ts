@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import daisyui from "daisyui";
+import typography from "@tailwindcss/typography";
 
 export default {
   content: ["./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}"],
@@ -17,6 +19,9 @@ export default {
         ],
       },
     },
+    daisyui: {
+      themes: ["light", "dark"],
+    },
   },
-  plugins: [],
+  plugins: [typography, daisyui],
 } satisfies Config;

@@ -1,7 +1,4 @@
-import { json, type MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { db } from "~/db.server";
-import { Users } from "~/db/schema/users";
+import { type MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
   return [
@@ -10,16 +7,7 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export async function loader() {
-  const users = await db.select().from(Users);
-  return json({ users });
-}
-
 export default function Index() {
-  const { users } = useLoaderData<typeof loader>();
-
-  console.log(users);
-
   return (
     <div className="flex h-screen items-center justify-center">
       <div className="flex flex-col items-center gap-16">
