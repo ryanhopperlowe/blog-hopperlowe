@@ -5,8 +5,9 @@ import {
 } from "@remix-run/node";
 import { useFetcher } from "@remix-run/react";
 import { ZodError } from "zod";
-import { Input } from "~/components/ui/form/input";
 import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/form/input";
+import { ConflictError } from "~/lib/errors";
 import { handlePromise } from "~/lib/handlePromise";
 import { userService } from "~/services/api/users.server";
 import { AuthService } from "~/services/auth.server";
@@ -14,8 +15,6 @@ import { AuthService } from "~/services/auth.server";
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const intent = formData.get("intent");
-
-  await new Promise((resolve) => setTimeout(resolve, 1000));
 
   if (intent === "signup") {
     const { error } = await handlePromise(
@@ -27,12 +26,17 @@ export async function action({ request }: ActionFunctionArgs) {
       return { validationErrors: error.flatten().fieldErrors };
     }
 
+    if (error instanceof ConflictError) {
+      return { conflictError: error.message };
+    }
+
+    console.error(error);
+
     throw redirect("/login");
   }
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
   return await AuthService.isAuthenticated(request, {
     successRedirect: "/",
   });
@@ -44,7 +48,6 @@ export default function Login() {
   const isLoading = fetcher.state === "submitting";
 
   const validationErrors = fetcher.data?.validationErrors || {};
-  console.log(validationErrors);
 
   return (
     <fetcher.Form method="post" className="card bg-base-200">
@@ -61,7 +64,7 @@ export default function Login() {
             label="Email"
             type="email"
             placeholder="Email"
-            error={validationErrors?.email?.[0]}
+            error={validationErrors?.email?.[0] || fetcher.data?.conflictError}
           />
 
           <Input
