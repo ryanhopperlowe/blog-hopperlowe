@@ -59,6 +59,9 @@ export default function Login() {
               name="email"
               label="Email"
               type="email"
+              isInvalid={
+                !!validationErrors?.email || !!fetcher.data?.conflictError
+              }
               errorMessage={
                 validationErrors?.email?.[0] || fetcher.data?.conflictError
               }
@@ -68,6 +71,7 @@ export default function Login() {
               name="password"
               label="Password"
               type="password"
+              isInvalid={!!validationErrors?.password}
               errorMessage={validationErrors?.password?.[0]}
             />
 
@@ -75,10 +79,16 @@ export default function Login() {
               name="confirmPassword"
               label="Confirm Password"
               type="password"
+              isInvalid={!!validationErrors?.confirmPassword}
               errorMessage={validationErrors?.confirmPassword?.[0]}
             />
 
-            <Button isLoading={isLoading} disabled={isLoading} type="submit">
+            <Button
+              isLoading={isLoading}
+              disabled={isLoading}
+              color="primary"
+              type="submit"
+            >
               Sign Up
             </Button>
           </CardBody>
