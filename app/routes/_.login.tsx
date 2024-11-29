@@ -1,7 +1,6 @@
+import { Button, Card, CardBody, CardHeader, Input } from "@nextui-org/react";
 import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { useFetcher } from "@remix-run/react";
-import { Button } from "~/components/ui/button";
-import { Input } from "~/components/ui/form/input";
 import { AuthService } from "~/services/auth.server";
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -32,40 +31,28 @@ export default function Login() {
 
   return (
     <div className="flex justify-center items-center h-full">
-      <div className="card bg-base-200 w-full max-w-xl">
-        <div className="card-body">
-          <div className="card-header">
-            <h2 className="card-title">Login</h2>
-          </div>
+      <Card className="w-full max-w-xl">
+        <CardHeader>Login</CardHeader>
 
-          <fetcher.Form
-            method="post"
-            className="card-content flex flex-col gap-4"
-          >
-            <Input
-              name="email"
-              label="Email"
-              type="email"
-              placeholder="Email"
-            />
+        <CardBody className="flex flex-col gap-4">
+          <fetcher.Form method="post" className="flex flex-col gap-4">
+            <Input name="email" label="Email" type="email" />
 
-            <Input
-              name="password"
-              label="Password"
-              type="password"
-              placeholder="Password"
-            />
+            <Input name="password" label="Password" type="password" />
 
-            {data?.error && (
-              <p className="alert alert-error">{data.error.message}</p>
-            )}
+            {data?.error && <p className="text-danger">{data.error.message}</p>}
 
-            <Button type="submit" loading={isLoading} disabled={isLoading}>
+            <Button
+              color="primary"
+              type="submit"
+              isLoading={isLoading}
+              disabled={isLoading}
+            >
               Login
             </Button>
           </fetcher.Form>
-        </div>
-      </div>
+        </CardBody>
+      </Card>
     </div>
   );
 }
