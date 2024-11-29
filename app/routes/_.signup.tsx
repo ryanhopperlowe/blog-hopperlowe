@@ -1,3 +1,4 @@
+import { Button, Card, CardBody, CardHeader, Input } from "@nextui-org/react";
 import {
   ActionFunctionArgs,
   LoaderFunctionArgs,
@@ -5,8 +6,6 @@ import {
 } from "@remix-run/node";
 import { useFetcher } from "@remix-run/react";
 import { ZodError } from "zod";
-import { Button } from "~/components/ui/button";
-import { Input } from "~/components/ui/form/input";
 import { ConflictError } from "~/lib/errors";
 import { handlePromise } from "~/lib/handlePromise";
 import { userService } from "~/services/api/users.server";
@@ -30,7 +29,6 @@ export async function action({ request }: ActionFunctionArgs) {
       return { conflictError: error.message };
     }
 
-    console.error(error);
     throw redirect("/login");
   }
 }
@@ -50,21 +48,18 @@ export default function Login() {
 
   return (
     <div className="flex justify-center items-center h-full">
-      <fetcher.Form method="post" className="card bg-base-200 w-full max-w-xl">
-        <div className="card-body">
-          <div className="card-header">
-            <h2 className="card-title">Sign Up</h2>
-          </div>
+      <Card className="w-full max-w-xl">
+        <fetcher.Form method="post">
+          <CardHeader>Sign Up</CardHeader>
 
-          <div className="card-content flex flex-col gap-4">
+          <CardBody className="flex flex-col gap-4">
             <input type="hidden" name="intent" value="signup" />
 
             <Input
               name="email"
               label="Email"
               type="email"
-              placeholder="Email"
-              error={
+              errorMessage={
                 validationErrors?.email?.[0] || fetcher.data?.conflictError
               }
             />
@@ -73,24 +68,22 @@ export default function Login() {
               name="password"
               label="Password"
               type="password"
-              placeholder="Password"
-              error={validationErrors?.password?.[0]}
+              errorMessage={validationErrors?.password?.[0]}
             />
 
             <Input
               name="confirmPassword"
               label="Confirm Password"
               type="password"
-              placeholder="Confirm Password"
-              error={validationErrors?.confirmPassword?.[0]}
+              errorMessage={validationErrors?.confirmPassword?.[0]}
             />
 
-            <Button loading={isLoading} disabled={isLoading} type="submit">
+            <Button isLoading={isLoading} disabled={isLoading} type="submit">
               Sign Up
             </Button>
-          </div>
-        </div>
-      </fetcher.Form>
+          </CardBody>
+        </fetcher.Form>
+      </Card>
     </div>
   );
 }
