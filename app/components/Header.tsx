@@ -10,10 +10,7 @@ import { useMatches } from "@remix-run/react";
 
 export function Header({ isAuthed }: { isAuthed: boolean }) {
   const matches = useMatches();
-  console.log(matches);
-
-  const isBlogActive = matches.some((match) => match.pathname === "/blooog");
-  console.log(isBlogActive);
+  const isBlogActive = matches.some((match) => match.pathname === "/blog");
 
   return (
     <Navbar className="sticky top-0 bg-primary-50">
