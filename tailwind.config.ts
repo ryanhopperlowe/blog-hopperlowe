@@ -21,6 +21,18 @@ export default {
           "Noto Color Emoji",
         ],
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            a: {
+              textDecoration: "inherit",
+              "&:hover": {
+                textDecoration: "inherit",
+              },
+            },
+          },
+        },
+      },
     },
   },
   plugins: [typography, nextui()],
