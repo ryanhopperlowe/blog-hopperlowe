@@ -11,6 +11,9 @@ import { useMatches } from "@remix-run/react";
 export function Header({ isAuthed }: { isAuthed: boolean }) {
   const matches = useMatches();
   const isBlogActive = matches.some((match) => match.pathname === "/blog");
+  const isCreateArticleActive = matches.some(
+    (match) => match.pathname === "/articles/create"
+  );
 
   return (
     <Navbar className="sticky top-0 bg-primary-50">
@@ -31,13 +34,25 @@ export function Header({ isAuthed }: { isAuthed: boolean }) {
           </Link>
         </NavbarItem>
 
-        <NavbarItem>
-          {isAuthed && (
-            <Button variant="solid" color="primary" as={Link} href="/logout">
-              Logout
-            </Button>
-          )}
-        </NavbarItem>
+        {isAuthed && (
+          <>
+            <NavbarItem>
+              <Link
+                color="foreground"
+                href="/articles/create"
+                underline={isCreateArticleActive ? "always" : "hover"}
+              >
+                Create Article
+              </Link>
+            </NavbarItem>
+
+            <NavbarItem>
+              <Button variant="solid" color="primary" as={Link} href="/logout">
+                Logout
+              </Button>
+            </NavbarItem>
+          </>
+        )}
       </NavbarContent>
     </Navbar>
   );
