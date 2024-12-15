@@ -1,5 +1,5 @@
 import { LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData, Outlet } from "@remix-run/react";
+import { Outlet, useLoaderData } from "@remix-run/react";
 import { Header } from "~/components/Header";
 import { RootLayout } from "~/components/Layout";
 import { AuthService } from "~/services/auth.server";
