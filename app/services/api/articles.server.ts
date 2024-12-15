@@ -1,25 +1,23 @@
-import {
-  Articles,
-  articleSchema,
-  createArticleSchema,
-} from "~/db/schema/articles";
-import { InternalServerError } from "~/lib/errors";
-import { DB } from "../db.server";
-import { createAction } from "./helpers.server";
+import { Article } from "~/db/schema/articles";
 
-const createArticle = createAction()
-  .input(createArticleSchema)
-  .output(articleSchema)
-  .errors([InternalServerError])
-  .action(async ({ input }) => {
-    const [article] = await DB.insert(Articles).values(input).returning();
-
-    if (!article) throw new InternalServerError("Failed to create article");
-
-    return article;
-  })
-  .getAction();
+const articles: Article[] = [
+  {
+    title: "My first Article",
+    summary: "This is the summary of my first article",
+    location: "public/articles/test-article1.md",
+  },
+  {
+    title: "My second Article",
+    summary: "This is the summary of my second article",
+    location: "public/articles/test-article2.md",
+  },
+  {
+    title: "My third Article",
+    summary: "This is the summary of my third article",
+    location: "public/articles/test-article3.md",
+  },
+];
 
 export const ArticlesService = {
-  createArticle,
+  articles,
 };
