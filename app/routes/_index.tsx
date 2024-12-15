@@ -1,4 +1,4 @@
-import { type MetaFunction } from "@remix-run/node";
+import { redirect, type MetaFunction } from "@remix-run/node";
 import { RootLayout } from "~/components/Layout";
 
 export const meta: MetaFunction = () => {
@@ -7,6 +7,10 @@ export const meta: MetaFunction = () => {
     { name: "description", content: "Blog - Ryan Hopper-Lowe" },
   ];
 };
+
+export async function loader() {
+  throw redirect("/blog");
+}
 
 export default function Index() {
   return (
