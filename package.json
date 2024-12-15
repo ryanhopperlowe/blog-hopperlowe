@@ -14,6 +14,7 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "db:apply": "pnpm run db:generate && pnpm run db:migrate",
+    "prod:studio": "bash prod-studio.sh",
     "postinstall": "pnpm run db:apply"
   },
   "dependencies": {

@@ -15,6 +15,20 @@
       "when": 1732255281048,
       "tag": "0001_next_freak",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1734193732922,
+      "tag": "0002_low_imperial_guard",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1734235634543,
+      "tag": "0003_same_vulcan",
+      "breakpoints": true
     }
   ]
 }
