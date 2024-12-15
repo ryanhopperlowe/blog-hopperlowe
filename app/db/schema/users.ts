@@ -1,9 +1,7 @@
-import { z } from "zod";
 import { pgTable, text, uuid } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+import { z } from "zod";
 import { baseColumns } from "../db-helpers";
-import { Articles } from "./articles";
-import { relations } from "drizzle-orm";
 
 export const Users = pgTable(
   "users",
@@ -32,7 +30,3 @@ export const userSchema = createSelectSchema(Users).omit({
 
 export type User = z.infer<typeof userSchema>;
 export type CreateUser = z.infer<typeof createUserSchema>;
-
-export const usersRelations = relations(Users, ({ many }) => ({
-  articles: many(Articles),
-}));
