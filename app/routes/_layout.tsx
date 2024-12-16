@@ -17,8 +17,10 @@ export default function Layout() {
     <RootLayout>
       <Header isAuthed={isAuthed} />
 
-      <div className="h-full container mx-auto overflow-auto">
-        <Outlet />
+      <div className="h-full overflow-auto flex-1">
+        <main className="h-full container mx-auto">
+          <Outlet />
+        </main>
       </div>
     </RootLayout>
   );

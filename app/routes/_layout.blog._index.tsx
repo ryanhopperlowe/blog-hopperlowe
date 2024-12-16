@@ -3,7 +3,7 @@ import { useLoaderData } from "@remix-run/react";
 import { ArticlesService } from "~/services/api/articles.server";
 
 export async function loader() {
-  return { articles: ArticlesService.articles };
+  return { articles: await ArticlesService.getArticles.execute(null) };
 }
 
 export default function BlogPage() {
