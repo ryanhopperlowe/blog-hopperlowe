@@ -13,14 +13,19 @@ export function Header({ isAuthed }: { isAuthed: boolean }) {
   const isBlogActive = matches.some((match) => match.pathname === "/blog");
 
   return (
-    <Navbar className="sticky top-0 bg-primary-50">
+    <Navbar
+      className="bg-primary-50 justify-between"
+      classNames={{
+        wrapper: "max-w-full",
+      }}
+    >
       <NavbarBrand>
         <Link href="/" color="foreground">
           Ryan Hopper-Lowe
         </Link>
       </NavbarBrand>
 
-      <NavbarContent justify="end">
+      <NavbarContent justify="center">
         <NavbarItem isActive={isBlogActive}>
           <Link
             href="/blog"
@@ -30,8 +35,10 @@ export function Header({ isAuthed }: { isAuthed: boolean }) {
             Blog
           </Link>
         </NavbarItem>
+      </NavbarContent>
 
-        {isAuthed && (
+      {isAuthed && (
+        <NavbarContent justify="end">
           <>
             <NavbarItem>
               <Button variant="solid" color="primary" as={Link} href="/logout">
@@ -39,8 +46,8 @@ export function Header({ isAuthed }: { isAuthed: boolean }) {
               </Button>
             </NavbarItem>
           </>
-        )}
-      </NavbarContent>
+        </NavbarContent>
+      )}
     </Navbar>
   );
 }

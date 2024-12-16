@@ -8,10 +8,10 @@ const articles: Article[] = [
   {
     id: "1",
     author: "Ryan Hopper-Lowe",
-    title: "My first Article",
-    summary: "Really just a test to make sure this crap works.",
-    location: "public/articles/article1-my-first-article.md",
-    createdAt: new Date(),
+    title: "Why I left Next.js in the dust",
+    summary: "My personal journey through the world of React metaframeworks.",
+    location: "public/articles/remix-over-nextjs.md",
+    createdAt: new Date(2024, 12, 15),
   },
 ];
 
@@ -23,6 +23,12 @@ const articlesSchema = z.object({
   content: z.string(),
   createdAt: z.date(),
 });
+
+const getArticles = createAction()
+  .errors([NotFoundError, InternalServerError])
+  .output(z.array(articlesSchema.omit({ content: true })))
+  .action(async () => articles)
+  .getAction();
 
 const getArticle = createAction()
   .input(z.string())
@@ -44,6 +50,6 @@ const getArticle = createAction()
   .getAction();
 
 export const ArticlesService = {
-  articles,
+  getArticles,
   getArticle,
 };

@@ -17,8 +17,8 @@ export default function ArticlePage() {
   const { article } = useLoaderData<typeof loader>();
 
   return (
-    <div>
-      <article className="my-5 mx-2">
+    <div className="pb-5">
+      <article className="my-5 mx-2 mb-10">
         <ReactMarkdown>{article.content}</ReactMarkdown>
       </article>
 
