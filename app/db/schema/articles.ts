@@ -5,4 +5,5 @@ export type Article = {
   summary: string;
   location: string;
   createdAt: Date;
+  draft: boolean;
 };
