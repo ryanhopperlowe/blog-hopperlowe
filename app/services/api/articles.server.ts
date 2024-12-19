@@ -21,7 +21,7 @@ const articles: Article[] = [
     summary: "Some fun facts about the useRef hook in React.",
     location: "public/articles/use-ref-wrong.md",
     createdAt: new Date(2024, 12, 18),
-    draft: true,
+    draft: false,
   },
 ];
 
