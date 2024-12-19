@@ -12,6 +12,16 @@ const articles: Article[] = [
     summary: "My personal journey through the world of React metaframeworks.",
     location: "public/articles/remix-over-nextjs.md",
     createdAt: new Date(2024, 12, 15),
+    draft: false,
+  },
+  {
+    id: "2",
+    author: "Ryan Hopper-Lowe",
+    title: "You're using useRef wrong",
+    summary: "Some fun facts about the useRef hook in React.",
+    location: "public/articles/use-ref-wrong.md",
+    createdAt: new Date(2024, 12, 18),
+    draft: false,
   },
 ];
 
@@ -22,12 +32,13 @@ const articlesSchema = z.object({
   summary: z.string(),
   content: z.string(),
   createdAt: z.date(),
+  draft: z.boolean(),
 });
 
 const getArticles = createAction()
   .errors([NotFoundError, InternalServerError])
   .output(z.array(articlesSchema.omit({ content: true })))
-  .action(async () => articles)
+  .action(async () => articles.filter((article) => !article.draft))
   .getAction();
 
 const getArticle = createAction()
