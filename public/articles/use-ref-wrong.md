@@ -14,7 +14,7 @@ Now I pride myself on being pretty knowledgeable about the [rules of react](http
 
 ## Let's start with the basics
 
-### What is `useRef`?
+### What is `useRef` ([docs here](https://react.dev/reference/react/useRef))?
 
 `useRef` essentially provides a component with a way to store a value that is not used for rendering.
 This exempts it from some rules related to dependencies and memoization, but it also comes with some caveats.
