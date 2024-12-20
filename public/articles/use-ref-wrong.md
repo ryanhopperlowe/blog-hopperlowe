@@ -146,25 +146,18 @@ Sometimes we need to access a value in `useEffect` without passing it as a depen
 
 ```tsx
 const Component = () => {
+  // state variable to be used during rendering
   const [anchorElement, _setAnchorElement] = useState<HTMLElement | null>(null);
+
+  // ref to be used outside of rendering
   const anchorRef = useRef<HTMLElement | null>(null);
 
   const setAnchorElement = useCallback((node: HTMLElement | null) => {
     // we can set both the state and ref and pass this function to the div's ref prop
-
     _setAnchorElement(node);
     anchorRef.current = node;
   }, []);
 
-  useHookThatUsesRefValue(anchorElement); // this is fine because it's a state value
-
-  useEffect(() => {
-    console.log(anchorElement);
-  }, [anchorElement]); // this value can now be used as a dependency
-
-  useEffect(() => {
-    console.log(anchorRef.current);
-  }, []); // the ref value can be used outside of rendering as needed!
 
   return <>
       <div ref={setAnchorElement}>My Anchor Element</div>
