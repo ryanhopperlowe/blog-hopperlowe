@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs, redirect } from "@remix-run/node";
+import { LoaderFunctionArgs, MetaFunction, redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import ReactMarkdown from "react-markdown";
 import { ArticlesService } from "~/services/api/articles.server";
@@ -12,6 +12,13 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
   return { article };
 }
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  return [
+    { title: data?.article.title || "Blog Post" },
+    { description: data?.article.summary || "Blog Post" },
+  ];
+};
 
 export default function ArticlePage() {
   const { article } = useLoaderData<typeof loader>();
