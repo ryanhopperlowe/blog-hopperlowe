@@ -2,8 +2,11 @@ import { MetaFunction, useRouteError } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Blog | Ryan Hopper-Lowe" },
+    { title: "Blog" },
+    { "og:title": "Blog" },
     { description: "Blog posts by Ryan Hopper-Lowe" },
+    { "og:description": "Blog posts by Ryan Hopper-Lowe" },
+    { "og:site_name": "Ryan Hopper-Lowe" },
   ];
 };
 

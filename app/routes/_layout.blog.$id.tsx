@@ -17,6 +17,9 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
   return [
     { title: data?.article.title || "Blog Post" },
     { description: data?.article.summary || "Blog Post" },
+    { "og:title": data?.article.title || "Blog Post" },
+    { "og:description": data?.article.summary || "Blog Post" },
+    { "og:site_name": "Ryan Hopper-Lowe" },
   ];
 };
 
