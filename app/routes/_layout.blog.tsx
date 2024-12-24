@@ -1,4 +1,11 @@
-import { useRouteError } from "@remix-run/react";
+import { MetaFunction, useRouteError } from "@remix-run/react";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Blog | Ryan Hopper-Lowe" },
+    { description: "Blog posts by Ryan Hopper-Lowe" },
+  ];
+};
 
 export function ErrorBoundary() {
   const error = useRouteError();
