@@ -1,6 +1,6 @@
 import { LoaderFunctionArgs, MetaFunction, redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import ReactMarkdown from "react-markdown";
+import { Markdown } from "~/components/Markdown";
 import { ArticlesService } from "~/services/api/articles.server";
 
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -29,7 +29,7 @@ export default function ArticlePage() {
   return (
     <div className="pb-5">
       <article className="my-5 mx-2 mb-10">
-        <ReactMarkdown>{article.content}</ReactMarkdown>
+        <Markdown>{article.content}</Markdown>
       </article>
 
       <footer className="my-5 mx-2">
