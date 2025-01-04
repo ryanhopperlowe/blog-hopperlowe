@@ -11,8 +11,8 @@ const articles: Article[] = [
     title: "Why I left Next.js in the dust",
     summary: "My personal journey through the world of React metaframeworks.",
     location: "public/articles/remix-over-nextjs.md",
-    createdAt: new Date(2024, 12, 15),
-    draft: false,
+    createdAt: new Date(2024, 11, 15),
+    draft: true,
   },
   {
     id: "2",
@@ -20,7 +20,7 @@ const articles: Article[] = [
     title: "You're using useRef wrong",
     summary: "Some fun facts about the useRef hook in React.",
     location: "public/articles/use-ref-wrong.md",
-    createdAt: new Date(2024, 12, 18),
+    createdAt: new Date(2024, 11, 18),
     draft: false,
   },
 ];
