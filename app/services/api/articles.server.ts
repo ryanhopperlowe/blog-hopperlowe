@@ -23,6 +23,16 @@ const articles: Article[] = [
     createdAt: new Date(2024, 11, 18),
     draft: false,
   },
+  {
+    id: "3",
+    author: "Ryan Hopper-Lowe",
+    title: "You probably never needed Zustand",
+    summary:
+      "A look at why React state management libraries are a waste of time.",
+    location: "public/articles/ditch-state-management.md",
+    createdAt: new Date(2025, 0, 9),
+    draft: false,
+  },
 ];
 
 const articlesSchema = z.object({
