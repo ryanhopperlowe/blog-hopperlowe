@@ -2,7 +2,7 @@
 
 TLDR;
 
-> My main problemn with libraries like Redux, and Zustand is that they often times get reached for long before the complexity rises to the point where they're needed. 95% of the time, you should be able to solve your issues with simpler methods.
+> My main problem with libraries like Redux, and Zustand is that they often times get reached for long before the complexity rises to the point where they're needed. 95% of the time, you should be able to solve your issues with simpler methods.
 
 For years, I used to swear by state management. Along with most of the React community, I thought of it as the silver bullet I could use to solve all of my problems. I've since changed my tune. After years of using them (Redux, Zustand, MobX, Jotai, Context API, and more), I've come to the conclusion that they're (mostly) a waste of my time as a developer.
 
@@ -76,13 +76,13 @@ Use something like `@tanstack/react-query` to manage your api state. Out of the 
 
 ### 2. Form State
 
-For the most part, form state can be ignored completely if you're able to implement validation on the server. If not though, `react-hook-form` and `zod` provide a fantastic way of managing form state on the client.
+For the most part, form state can be ignored completely if you're able to implement validation on the server. If you need client side form state, `react-hook-form` and `zod` provide a fantastic way of managing **complex** form state on the client, but I'd argue you probably don't need it every time.
 
 ### 3. Persistent State
 
-For persistent state, I tend to mostly reach for URL query params. They're extremely easy to use, inherently accessible anywhere in your app, they persist between page loads, and they can be saved as bookmarks and shared between users. This should be the go-to for all things filtering, sorting, pagination, and anything else that needs to be persisted.
+For persistent state, I tend to mostly reach for URL query params. They're extremely easy to use, inherently accessible anywhere in your app, they persist between page loads, are navigable through browser history, and they can be saved as bookmarks and shared between users. This should be the go-to for all things filtering, sorting, pagination, and anything else that needs to be persisted.
 
-In the case where persistent data needs to be more complex (as long as it doesn't need to be sharable between users), you can then reach for things like local storage or cookies.
+In the case where persistent data needs to be more complex (as long as it doesn't need to be sharable between users), you can then reach for things like local storage or cookies (but I rarely have to go here).
 
 ### 4. Auth State
 
