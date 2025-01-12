@@ -5,6 +5,7 @@ import remarkGfm from "remark-gfm";
 import { ReactNode } from "react";
 import { Prism as Highlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { HashLink } from "./HashLink";
 
 type CodeProps = {
   className?: string;
@@ -35,6 +36,34 @@ export function Markdown({ children }: { children: string }) {
   const Components: Components = {
     code({ ...props }) {
       return <Code {...props} />;
+    },
+    h1({ children, node }) {
+      return (
+        <HashLink node={node} as="h1">
+          {children}
+        </HashLink>
+      );
+    },
+    h2({ children, node }) {
+      return (
+        <HashLink node={node} as="h2">
+          {children}
+        </HashLink>
+      );
+    },
+    h3({ children, node }) {
+      return (
+        <HashLink node={node} as="h3">
+          {children}
+        </HashLink>
+      );
+    },
+    h4({ children, node }) {
+      return (
+        <HashLink node={node} as="h4">
+          {children}
+        </HashLink>
+      );
     },
   };
 
