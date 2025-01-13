@@ -37,13 +37,6 @@ export function Markdown({ children }: { children: string }) {
     code({ ...props }) {
       return <Code {...props} />;
     },
-    h1({ children, node }) {
-      return (
-        <HashLink node={node} as="h1">
-          {children}
-        </HashLink>
-      );
-    },
     h2({ children, node }) {
       return (
         <HashLink node={node} as="h2">
