@@ -1,6 +1,6 @@
-import { Link } from "@remix-run/react";
+import { Link, useLocation } from "@remix-run/react";
 import { Element } from "node_modules/react-markdown/lib";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 
 type HashLinkProps = {
   node?: Element;
@@ -9,10 +9,19 @@ type HashLinkProps = {
 };
 
 export function HashLink({ node, children, as: Comp }: HashLinkProps) {
+  const { hash } = useLocation();
+  const ref = useRef<HTMLAnchorElement>(null);
+
   const id = node?.children[0]?.type === "text" ? node.children[0].value : "";
 
+  useEffect(() => {
+    if (decodeURIComponent(hash) === "#" + id) {
+      ref.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [id, hash]);
+
   return id ? (
-    <Link id={id} to={`#${id}`} className="group">
+    <Link id={id} to={`#${id}`} replace ref={ref} className="group">
       <Comp className="flex items-center gap-2">
         {children}
 
