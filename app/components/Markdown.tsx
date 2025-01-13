@@ -6,6 +6,7 @@ import { ReactNode } from "react";
 import { Prism as Highlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { HashLink } from "./HashLink";
+import { Link } from "@remix-run/react";
 
 type CodeProps = {
   className?: string;
@@ -56,6 +57,16 @@ export function Markdown({ children }: { children: string }) {
         <HashLink node={node} as="h4">
           {children}
         </HashLink>
+      );
+    },
+    a({ children, node }) {
+      return (
+        <a
+          {...node?.properties}
+          className="underline hover:text-primary transition-colors"
+        >
+          {children}
+        </a>
       );
     },
   };
