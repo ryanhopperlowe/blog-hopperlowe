@@ -21,13 +21,18 @@ export function HashLink({ node, children, as: Comp }: HashLinkProps) {
   }, [id, hash]);
 
   return id ? (
-    <Link id={id} to={`#${id}`} replace ref={ref} className="group">
-      <Comp className="flex items-center gap-2">
-        {children}
-
-        <span className="invisible text-content3-foreground group-hover:visible">
-          #
-        </span>
+    <Link
+      id={id}
+      to={`#${id}`}
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault();
+        ref.current?.scrollIntoView({ behavior: "smooth" });
+        history.pushState(null, "", `#${id}`);
+      }}
+    >
+      <Comp className="flex items-start gap-2 text-gray-400 hover:underline underline-offset-8 decoration-gray-600 hover:text-gray-300">
+        # {children}
       </Comp>
     </Link>
   ) : (
