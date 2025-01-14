@@ -37,6 +37,13 @@ export function Markdown({ children }: { children: string }) {
     code({ ...props }) {
       return <Code {...props} />;
     },
+    h1({ children, node }) {
+      return (
+        <HashLink node={node} as="h1">
+          {children}
+        </HashLink>
+      );
+    },
     h2({ children, node }) {
       return (
         <HashLink node={node} as="h2">
@@ -62,7 +69,7 @@ export function Markdown({ children }: { children: string }) {
       return (
         <a
           {...node?.properties}
-          className="underline hover:underline hover:text-primary transition-colors"
+          className="hover:underline text-primary transition-colors"
         >
           {children}
         </a>
