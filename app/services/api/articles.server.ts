@@ -12,7 +12,7 @@ const articles: Article[] = [
     summary: "My personal journey through the world of React metaframeworks.",
     location: "public/articles/remix-over-nextjs.md",
     createdAt: new Date(2024, 11, 15),
-    draft: true,
+    draft: false,
   },
   {
     id: "2",
@@ -31,6 +31,15 @@ const articles: Article[] = [
       "A look at why React state management libraries are a waste of time.",
     location: "public/articles/ditch-state-management.md",
     createdAt: new Date(2025, 0, 9),
+    draft: false,
+  },
+  {
+    id: "4",
+    author: "Ryan Hopper-Lowe",
+    title: "I might be ditching React 🤯",
+    summary: "My take on a newer framework.",
+    location: "public/articles/2025-02-27-i-tried-svelte.md",
+    createdAt: new Date(2025, 1, 27),
     draft: false,
   },
 ];
