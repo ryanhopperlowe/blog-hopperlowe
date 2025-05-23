@@ -53,10 +53,12 @@ const getArticlesV2 = createAction()
   .errors([InternalServerError])
   .action(async () => {
     try {
-      return loadArticles().sort(
-        (a, b) =>
-          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-      );
+      return loadArticles()
+        .filter((a) => !a.draft)
+        .sort(
+          (a, b) =>
+            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+        );
     } catch (_) {
       throw new InternalServerError("Failed to load Articles");
     }
