@@ -1,3 +1,12 @@
+---
+author: Ryan Hopper-Lowe
+title: 1 Month, 4 Interviews, 3 Offers, 0 Applications
+summary: How I went from unemployed to FAANG in 1 month
+createdAt: 2025-05-02
+draft: true
+ids: [5]
+---
+
 # 1 Month, 4 Interviews, 3 Offers, 0 Applications
 
 > #### TLDR;

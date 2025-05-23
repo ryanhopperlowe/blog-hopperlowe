@@ -1,3 +1,12 @@
+---
+author: Ryan Hopper-Lowe
+title: Why I left Next.js in the dust
+summary: My personal journey through the world of React metaframeworks.
+createdAt: 2024-12-15
+draft: false
+ids: [1]
+---
+
 # Why I left Next.js in the dust
 
 6 months ago, if you were to ask me what to use for a new project, 9 times out of 10 I would have recommended Next.js. I've been using Next both personally and professionally since the major crash of Sillicon Valley Bank in early 2023 (a story for another time). For me at the time, the concept of colocating backend and frontend code was a total game changer, and (being a huge TypeScript nut) full stack typesafety felt like a dream come true. I mostly used the Pages Router (at work) and dabbled in the App Router for most of my web-based personal projects and I have to say, I was very happy with the experience.

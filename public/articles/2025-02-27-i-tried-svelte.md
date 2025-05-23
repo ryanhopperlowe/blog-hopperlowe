@@ -3,6 +3,7 @@ title: I might be ditching React 🤯
 createdAt: 2025-02-27
 summary: My take on a newer framework
 draft: false
+ids: [4]
 ---
 
 # I might be ditching React 🤯

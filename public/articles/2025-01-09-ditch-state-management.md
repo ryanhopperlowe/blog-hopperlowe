@@ -1,3 +1,11 @@
+---
+title: You probably never needed Zustand
+summary: A look at why React state management libraries are a waste of time.
+createdAt: 2025-01-09
+draft: false
+ids: [3]
+---
+
 # You probably never needed Zustand
 
 TLDR;

@@ -1,3 +1,11 @@
+---
+title: You're using useRef wrong
+createdAt: 2024-12-18
+summary: Some fun facts about the useRef hook in React.
+draft: false
+ids: [2]
+---
+
 # You're using useRef wrong!
 
 ## Introduction
