@@ -1,3 +1,10 @@
+---
+title: I might be ditching React 🤯
+createdAt: 2025-02-27
+summary: My take on a newer framework
+draft: false
+---
+
 # I might be ditching React 🤯
 
 The past year for me has been a whirlwind of learning. For the first 3.5 years of my career, all I knew was SPAs built in React. Fast forward to a year and a half ago, I was introduced to fullstack react frameworks like Next.js, then a few months later, I was introduced to Remix and I thought I had learned all there was to know. Then I found Svelte. Now a mere 2 months into my Svelte journey, I think I might be a convert.
