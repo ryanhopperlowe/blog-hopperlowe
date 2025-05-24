@@ -1,4 +1,4 @@
-import { Card, CardBody, CardHeader, Link } from "@nextui-org/react";
+import { Button, Card, CardBody, CardHeader, Link } from "@nextui-org/react";
 import { useLoaderData } from "@remix-run/react";
 import { ArticlesService } from "~/services/api/articles.server";
 
@@ -17,10 +17,20 @@ export default function BlogPage() {
           <Card
             key={article.id}
             isPressable
-            className="border-none"
+            className="border-none relative"
             as={Link}
             href={`/blog/${article.id}`}
           >
+            {article.draft && (
+              <Button
+                className="absolute top-4 left-4"
+                variant="solid"
+                color="danger"
+                size="sm"
+              >
+                Draft
+              </Button>
+            )}
             <CardHeader className="pb-0 pt-4 px-4 flex-col items-start">
               <h2 className="font-bold text-xl">{article.title}</h2>
               <small className="text-default-500">

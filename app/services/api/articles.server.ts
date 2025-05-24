@@ -1,19 +1,13 @@
 import parseMD from "parse-md";
 import fs from "fs";
-import { InternalServerError, NotFoundError } from "~/lib/errors";
+import {
+  ForbiddenError,
+  InternalServerError,
+  NotFoundError,
+} from "~/lib/errors";
 import { createAction } from "./helpers.server";
 import { z } from "zod";
 import path from "path";
-
-const articlesSchema = z.object({
-  id: z.string(),
-  author: z.string(),
-  title: z.string(),
-  summary: z.string(),
-  content: z.string(),
-  createdAt: z.date(),
-  draft: z.boolean(),
-});
 
 const articleMeta = z.object({
   title: z.string(),
@@ -24,15 +18,15 @@ const articleMeta = z.object({
   ids: z.string().array().catch([]),
 });
 
-const articleSchemaV2 = articleMeta.extend({
+const articleSchema = articleMeta.extend({
   id: z.string(),
   content: z.string(),
 });
 
 const getArticle = createAction()
-  .input(z.string())
-  .output(articlesSchema)
-  .errors([NotFoundError, InternalServerError])
+  .input(articleSchema.shape.id)
+  .output(articleSchema)
+  .errors([NotFoundError, InternalServerError, ForbiddenError])
   .action(async ({ input }) => {
     try {
       const article = loadArticles().find(
@@ -41,20 +35,26 @@ const getArticle = createAction()
 
       if (!article) throw new NotFoundError("Article not found");
 
+      if (!import.meta.env.DEV && article.draft)
+        throw new ForbiddenError(
+          "This article has not been published yet, please check back later"
+        );
+
       return article;
-    } catch (_) {
+    } catch (e) {
+      if (e instanceof Error) throw e;
       throw new InternalServerError("Failed to read article");
     }
   })
   .getAction();
 
 const getArticlesV2 = createAction()
-  .output(articleSchemaV2.array())
+  .output(articleSchema.array())
   .errors([InternalServerError])
   .action(async () => {
     try {
       return loadArticles()
-        .filter((a) => !a.draft)
+        .filter((a) => import.meta.env.DEV || !a.draft)
         .sort(
           (a, b) =>
             new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
@@ -74,10 +74,10 @@ const formatId = (val: string) =>
   val.replace(/\.md$/, "").replace(/^\d{4}-\d{2}-\d{2}-/, "");
 
 function loadArticles() {
-  const getPath = (filename: string) =>
+  const getPath = (filename = "") =>
     path.join(path.join(path.dirname("."), "public/articles"), filename);
 
-  const dir = fs.readdirSync(getPath(""));
+  const dir = fs.readdirSync(getPath());
 
   return dir
     .map((filename) => {
